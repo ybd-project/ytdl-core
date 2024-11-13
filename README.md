@@ -7,7 +7,7 @@
 YBD Project fork of `ytdl-core`. This fork is dedicated to developing a YouTube downloader that is fast, stable, and takes into account various use cases, with reference to [LuanRT/YouTube.js](https://github.com/LuanRT/YouTube.js) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 > [!NOTE]
-> If you are looking for v5 documentation for `@ybd-project/ytdl-core`, please click [here](https://github.com/ybd-project-ver1/ytdl-core/blob/latest/v5/README.md).
+> If you are looking for v5 documentation for `@ybd-project/ytdl-core`, please click [here](https://github.com/ybd-project/ytdl-core/blob/latest/v5/README.md).
 
 ## Table of Contents
 
@@ -38,10 +38,7 @@ YBD Project fork of `ytdl-core`. This fork is dedicated to developing a YouTube 
 
 ## ℹ️Announcements at this timeℹ️
 
-> [!CAUTION]
-> Currently, the account that manages this ytdl-core repository has been flagged as spam, so we are accepting issues, etc. at [ybd-project-ver1/ytdl-core](https://github.com/ybd-project-ver1/ytdl-core) instead. Thank you for your cooperation.
-
-<!-- There are no announcements at this time. -->
+There are no announcements at this time.
 
 <!-- > [!NOTE]
 > As of v5.0.5, related videos cannot be retrieved. This will be fixed later.
@@ -68,12 +65,12 @@ To use `@ybd-project/ytdl-core` without problems, **use Node.js 16 or higher.** 
 ## Operating Environment
 
 > [!IMPORTANT]
-> `@ybd-project/ytdl-core` has not been tested in non-Node.js environments such as Deno. If you need ytdl-core optimized for these environments, please create an [issue](https://github.com/ybd-project-ver1/ytdl-core/issues/new?assignees=&labels=feature&projects=&template=feature_request.md&title=).
+> `@ybd-project/ytdl-core` has not been tested in non-Node.js environments such as Deno. If you need ytdl-core optimized for these environments, please create an [issue](https://github.com/ybd-project/ytdl-core/issues/new?assignees=&labels=feature&projects=&template=feature_request.md&title=).
 
 ### Default (Node.js)
 
 As usual, when using Node.js, as noted in the prerequisites, v16 or higher will work fine.
-If you have an example that does not work with 16 or higher versions, please create an [issue](https://github.com/ybd-project-ver1/ytdl-core/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=).
+If you have an example that does not work with 16 or higher versions, please create an [issue](https://github.com/ybd-project/ytdl-core/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=).
 
 ### Browser
 
@@ -117,7 +114,7 @@ Make sure you're installing the latest version of `@ybd-project/ytdl-core` to ke
 
 ## API Documentation
 
-For details API documentation, see the [Wiki](https://github.com/ybd-project-ver1/ytdl-core/wiki).
+For details API documentation, see the [Wiki](https://github.com/ybd-project/ytdl-core/wiki).
 
 ## Basic Usage
 
@@ -146,7 +143,7 @@ ytdl.getBasicInfo('https://www.youtube.com/watch?v=dQw4w9WgXcQ').then((info) => 
 
 ## Examples
 
-See the Examples folder for [examples](https://github.com/ybd-project-ver1/ytdl-core/tree/main/examples) of using `@ybd-project/ytdl-core`.
+See the Examples folder for [examples](https://github.com/ybd-project/ytdl-core/tree/main/examples) of using `@ybd-project/ytdl-core`.
 
 ## Precautions
 

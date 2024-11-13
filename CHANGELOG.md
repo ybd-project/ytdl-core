@@ -1,5 +1,10 @@
 # Changelog
 
+## v6.0.8 (2024/11/13)
+
+### Change
+* **YtdlCore:** Change user from `ybd-project-ver1` to `ybd-project
+
 ## v6.0.7 (2024/11/13)
 
 ### Bug Fixes
