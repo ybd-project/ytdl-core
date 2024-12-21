@@ -3,8 +3,8 @@ import Base from './Base';
 
 export default class MWeb {
     static async getPlayerResponse(params: ClientsParams) {
-        const { url, payload, headers } = Clients.mweb(params);
+        const { requestPath, payload, headers } = Clients.mweb(params);
 
-        return await Base.request(url, { payload, headers }, params, 'MWeb');
+        return await Base.request(requestPath, { payload, headers }, params, 'MWeb');
     }
 }

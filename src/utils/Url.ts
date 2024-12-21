@@ -25,7 +25,11 @@ class Url {
         return `${BASE_URL}/iframe_api`;
     }
 
-    static getInnertubeBaseUrl() {
+    static getInnertubeBaseUrl(useGoogleApis?: boolean) {
+        if (useGoogleApis) {
+            return `https://youtubei.googleapis.com/youtubei/v1`;
+        }
+
         return `${BASE_URL}/youtubei/v1`;
     }
 

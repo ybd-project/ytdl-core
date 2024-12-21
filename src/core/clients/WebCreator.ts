@@ -3,8 +3,8 @@ import Base from './Base';
 
 export default class WebCreator {
     static async getPlayerResponse(params: ClientsParams) {
-        const { url, payload, headers } = Clients.webCreator(params);
+        const { requestPath, payload, headers } = Clients.webCreator(params);
 
-        return await Base.request(url, { payload, headers }, params, 'WebCreator');
+        return await Base.request(requestPath, { payload, headers }, params, 'WebCreator');
     }
 }

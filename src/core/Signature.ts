@@ -32,11 +32,16 @@ function getDecipheredFormat(format: YT_StreamingAdaptiveFormat<false>, decipher
                 const COMPONENTS = new URL(decodeURIComponent(PARAMS_URL)),
                     RESULTS = SHIM.polyfills.eval(`var ${decipherFunction.argumentName}='${decodeURIComponent(PARAMS_S)}';${decipherFunction.code}`);
 
+                if (RESULTS === undefined) {
+                    Logger.error(`[ Decipher ]: Decipher failed.\nCode: var ${decipherFunction.argumentName}='${decodeURIComponent(PARAMS_S)}';${decipherFunction.code}`);
+                    return PARAMS_URL;
+                }
+
                 COMPONENTS.searchParams.set(SEARCH_PARAMS.get('sp')?.toString() || 'sig', RESULTS);
 
                 return COMPONENTS.toString();
             } catch (err) {
-                Logger.debug(`[ Decipher ]: <error>Failed</error> to decipher URL: <error>${err}</error>`);
+                Logger.error(`[ Decipher ]: <error>Failed</error> to decipher URL: <error>${err}</error>`);
                 return PARAMS_URL;
             }
         },
@@ -51,11 +56,16 @@ function getDecipheredFormat(format: YT_StreamingAdaptiveFormat<false>, decipher
             try {
                 const RESULTS = SHIM.polyfills.eval(`var ${nTransformFunction.argumentName}='${decodeURIComponent(N)}';${nTransformFunction.code}`);
 
+                if (RESULTS === undefined) {
+                    Logger.error(`[ NTransform ]: N transform failed.\nCode: var ${nTransformFunction.argumentName}='${decodeURIComponent(N)}';${nTransformFunction.code}`);
+                    return url;
+                }
+
                 COMPONENTS.searchParams.set('n', RESULTS);
 
                 return COMPONENTS.toString();
             } catch (err) {
-                Logger.debug(`[ NTransform ]: <error>Failed</error> to transform N: <error>${err}</error>`);
+                Logger.error(`[ NTransform ]: <error>Failed</error> to transform N: <error>${err}</error>`);
                 return url;
             }
         },

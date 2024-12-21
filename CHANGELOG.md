@@ -1,9 +1,33 @@
 # Changelog
 
+## v6.0.9 (2024/11/15)
+
+### Features
+* [Unfinished]:**Cache:** Changed to export the `Cache` class so that the currently cached data can be retrieved.
+```ts
+import { YtdlCore, Cache } from '@ybd-project/ytdl-core';
+
+const ytdl = new YtdlCore();
+
+Cache.get('oauth2').then((cache: object | null) => {
+    ytdl.getFullInfo('VIDEO_URL', {
+        oauth2Credentials: cache,
+    });
+});
+```
+
+### Change
+* **Request:** Changed to change the domain to which the request is made if the request fails. (Usually use the domain `youtube.com`, but change to `youtubei.googleapis.com` if request to this domain fails)
+
+### Bug Fixes
+* **Clients:** Fixed a problem in which `[ WARNING ]: At least one client must be specified.` was output even though the option was successfully specified.
+* **Stream:** Fixed ReadableStream not existing on Glitch server (https://github.com/ybd-project/ytdl-core/issues/35)
+* [Unfinished]:**Download:** Fixed video incompatibility issue (https://github.com/ybd-project/ytdl-core/issues/34)
+
 ## v6.0.8 (2024/11/13)
 
 ### Change
-* **YtdlCore:** Change user from `ybd-project-ver1` to `ybd-project
+* **YtdlCore:** Change user from `ybd-project-ver1` to `ybd-project`
 
 ## v6.0.7 (2024/11/13)
 

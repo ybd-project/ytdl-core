@@ -11,6 +11,7 @@ import { Fetcher } from '@/core/Fetcher';
 import { Logger } from '@/utils/Log';
 
 import type { ClientsParams } from './meta/Clients';
+import { Url } from '@/utils/Url';
 
 const SHIM = Platform.getShim();
 
@@ -34,7 +35,7 @@ export default class Base {
         return null;
     }
 
-    static request<T = YT_PlayerApiResponse>(url: string, requestOptions: RequestOptions, params: ClientsParams, clientName: UpperCaseClientTypes | 'Next'): Promise<YTDL_InnertubeResponseInfo<T>> {
+    static request<T = YT_PlayerApiResponse>(requestPath: string, requestOptions: RequestOptions, params: ClientsParams, clientName: UpperCaseClientTypes | 'Next'): Promise<YTDL_InnertubeResponseInfo<T>> {
         return new Promise(async (resolve, reject) => {
             const HEADERS: Record<string, string> = {
                     'Content-Type': 'application/json',
@@ -50,8 +51,8 @@ export default class Base {
                     rewriteRequest: params.options.rewriteRequest,
                     originalProxy: params.options.originalProxy,
                 },
-                IS_NEXT_API = url.includes('/next'),
-                ALLOW_RETRY_REQUEST = !params.options.disableRetryRequest && (((OPTS.originalProxy || OPTS.rewriteRequest) && SHIM.runtime !== 'browser') || HEADERS['Authorization']),
+                IS_NEXT_API = requestPath.includes('/next'),
+                ALLOW_RETRY_REQUEST = !params.options.disableRetryRequest && SHIM.runtime !== 'browser',
                 responseHandler = (response: YT_PlayerApiResponse, isRetried = false) => {
                     const PLAY_ERROR = this.playError(response);
 
@@ -103,7 +104,7 @@ export default class Base {
 
                     Logger.debug(`[ ${clientName} ]: <info>Wait 2 seconds</info> and <warning>retry request...</warning> (Reason: <error>${error?.message}</error>)`);
                     setTimeout(() => {
-                        Fetcher.request<YT_PlayerApiResponse>(url, OPTS)
+                        Fetcher.request<YT_PlayerApiResponse>(Url.getInnertubeBaseUrl(true) + requestPath, OPTS)
                             .then((res) => responseHandler(res, true))
                             .catch((err) => {
                                 reject({
@@ -118,7 +119,7 @@ export default class Base {
                 };
 
             try {
-                Fetcher.request<YT_PlayerApiResponse>(url, OPTS)
+                Fetcher.request<YT_PlayerApiResponse>(Url.getInnertubeBaseUrl() + requestPath, OPTS)
                     .then((res) => responseHandler(res, false))
                     .catch((err) => {
                         if (ALLOW_RETRY_REQUEST) {
@@ -132,6 +133,10 @@ export default class Base {
                         });
                     });
             } catch (err: any) {
+                if (ALLOW_RETRY_REQUEST) {
+                    return retryRequest(err);
+                }
+
                 reject({
                     isError: true,
                     error: err,

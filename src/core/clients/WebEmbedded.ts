@@ -3,8 +3,8 @@ import Base from './Base';
 
 export default class WebEmbedded {
     static async getPlayerResponse(params: ClientsParams) {
-        const { url, payload, headers } = Clients.webEmbedded(params);
+        const { requestPath, payload, headers } = Clients.webEmbedded(params);
 
-        return await Base.request(url, { payload, headers }, params, 'WebEmbedded');
+        return await Base.request(requestPath, { payload, headers }, params, 'WebEmbedded');
     }
 }

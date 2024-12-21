@@ -127,7 +127,7 @@ class YtdlCore {
         this.includesNextAPIResponse = includesNextAPIResponse ?? false;
         this.includesOriginalFormatData = includesOriginalFormatData ?? false;
         this.includesRelatedVideo = includesRelatedVideo ?? true;
-        this.clients = clients || undefined;
+        this.clients = clients || ['web', 'mweb', 'tv', 'ios'];
         this.disableDefaultClients = disableDefaultClients ?? false;
         this.parsesHLSFormat = parsesHLSFormat ?? false;
         this.disableRetryRequest = disableRetryRequest ?? false;

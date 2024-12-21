@@ -3,8 +3,8 @@ import Base from './Base';
 
 export default class Android {
     static async getPlayerResponse(params: ClientsParams) {
-        const { url, payload, headers } = Clients.android(params);
+        const { requestPath, payload, headers } = Clients.android(params);
 
-        return await Base.request(url, { payload, headers }, params, 'Android');
+        return await Base.request(requestPath, { payload, headers }, params, 'Android');
     }
 }

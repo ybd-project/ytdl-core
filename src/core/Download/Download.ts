@@ -49,7 +49,7 @@ function requestSetup(url: string, requestOptions: any, options: InternalDownloa
 async function isDownloadUrlValid(format: YTDL_VideoFormat, options: InternalDownloadOptions): Promise<{ valid: boolean; reason?: string }> {
     return new Promise((resolve) => {
         const successResponseHandler = (res: Response) => {
-                if (res.status === 200) {
+                if (res.status.toString().startsWith('2')) {
                     Logger.debug(`[ ${format.sourceClientName} ]: <success>Video URL is normal.</success> The response was received with status code <success>"${res.status}"</success>.`);
                     resolve({ valid: true });
                 } else {

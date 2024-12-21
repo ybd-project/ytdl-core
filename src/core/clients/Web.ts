@@ -3,14 +3,14 @@ import Base from './Base';
 
 export default class Web {
     static async getPlayerResponse(params: ClientsParams) {
-        const { url, payload, headers } = Clients.web(params);
+        const { requestPath, payload, headers } = Clients.web(params);
 
-        return await Base.request(url, { payload, headers }, params, 'Web');
+        return await Base.request(requestPath, { payload, headers }, params, 'Web');
     }
 
     static async getNextResponse(params: ClientsParams) {
-        const { url, payload, headers } = Clients.web_nextApi(params);
+        const { requestPath, payload, headers } = Clients.web_nextApi(params);
 
-        return await Base.request(url, { payload, headers }, params, 'Next');
+        return await Base.request(requestPath, { payload, headers }, params, 'Next');
     }
 }

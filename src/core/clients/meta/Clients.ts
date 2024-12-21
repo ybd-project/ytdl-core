@@ -30,15 +30,13 @@ import type { ClientsParams } from '@/core/types';
 
 import utils from '@/utils/General';
 import { UserAgent } from '@/utils/UserAgents';
-import { Url } from '@/utils/Url';
 
-const INNERTUBE_BASE_API_URL = Url.getInnertubeBaseUrl(),
-    INNERTUBE_CLIENTS: Record<YTDL_ClientTypes, YTDL_ClientData> = Object.freeze({
+const INNERTUBE_CLIENTS: Record<YTDL_ClientTypes, YTDL_ClientData> = Object.freeze({
         web: {
             context: {
                 client: {
                     clientName: 'WEB',
-                    clientVersion: '2.20240726.00.00',
+                    clientVersion: '2.20241113.07.00',
                     userAgent: UserAgent.default,
                 },
             },
@@ -162,6 +160,10 @@ const INNERTUBE_BASE_API_URL = Url.getInnertubeBaseUrl(),
                 lactMilliseconds: '-1',
                 signatureTimestamp: 0,
             },
+            devicePlaybackCapabilities: {
+                supportsVp9Encoding: true,
+                supportXhr: true,
+            },
         },
         attestationRequest: {
             omitBotguardData: true,
@@ -205,7 +207,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
+            requestPath: `/player?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -237,7 +239,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL + '/next'}?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
+            requestPath: `/next?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -270,7 +272,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
+            requestPath: `/player?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -303,7 +305,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
+            requestPath: `/player?key=${CLIENT.apiInfo.key}&prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -336,7 +338,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?key=${CLIENT.apiInfo.key}&prettyPrint=false&id=${videoId}&t=${utils.generateClientPlaybackNonce(12)}`,
+            requestPath: `/player?key=${CLIENT.apiInfo.key}&prettyPrint=false&id=${videoId}&t=${utils.generateClientPlaybackNonce(12)}`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -369,7 +371,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?key=${CLIENT.apiInfo.key}&prettyPrint=false&id=${videoId}&t=${utils.generateClientPlaybackNonce(12)}`,
+            requestPath: `/player?key=${CLIENT.apiInfo.key}&prettyPrint=false&id=${videoId}&t=${utils.generateClientPlaybackNonce(12)}`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -402,7 +404,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?prettyPrint=false`,
+            requestPath: `/player?prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -435,7 +437,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?prettyPrint=false`,
+            requestPath: `/player?prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
@@ -468,7 +470,7 @@ class Clients {
         }
 
         return {
-            url: `${INNERTUBE_BASE_API_URL}/player?prettyPrint=false`,
+            requestPath: `/player?prettyPrint=false`,
             payload: PAYLOAD,
             headers: {
                 'X-YouTube-Client-Name': CLIENT.clientName,
